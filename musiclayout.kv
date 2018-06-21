@@ -1,0 +1,532 @@
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import level __main__.level
+#:import score __main__.score
+#:import best_score __main__.best_score
+#:import lives __main__.lives
+
+
+
+ScreenManagement:
+	transition: SlideTransition(direction='left')
+	WelcomeScreen:
+	Level1:
+	Level2:
+	Level3:
+	Level4:
+	Level5:
+	Level6:
+	#Level7:
+
+<pop@Popup>:
+	size_hint: (0.25,0.25)
+	title: 'Results'
+	opacity: 0.8
+
+<RightKeyPop@Popup>:
+	size_hint: (0.2,0.2)
+	content: 'Congratulations..Right Key'
+	
+
+<WelcomeScreen>:
+	name: 'welcomescreen'
+	level_no: 0
+	on_enter: root.load_level()
+	FloatLayout:
+		canvas.before:
+			Color: 
+				rgba: 0.5,0.5,1,1
+			Rectangle:
+				size: self.size
+				pos: self.pos
+			
+		Button:
+			id: button_play
+			on_press: root.next_level()
+			text:'Play'
+			color: 1,0,0,1
+			background_color: 1,0,0,1
+			size_hint: (0.125, 0.125)
+			pos_hint: {'right':0.4,'top':0.25}
+			font_size: self.width*0.12
+		Button:
+			id: button_quit
+			on_press: root.EXIT()
+			color: 0,1,0,1
+			background_color: 0,1,0,1
+			text:'Quit'
+			size_hint: (0.125, 0.125)
+			pos_hint: {'right':0.7 ,'top':0.25}
+			font_size: self.width*0.12
+
+
+<status>:
+	orientation: 'horizontal'
+	Label:
+		id:label_level		
+		text: '%s' %int(level)
+		color: 1,1,1,1
+		size_hint: (0.25,1)
+	Label:
+		id:label_score		
+		text: '%s' %int(score)
+		color: 1,1,1,1
+		size_hint: (0.25,1)
+	Label:
+		id:label_lives		
+		text: '%s' %int(lives)
+		color: 1,1,1,1
+		size_hint: (0.25,1)
+	Label:
+		id:label_best_score		
+		text: '%s' %int(best_score)
+		color: (0,0,0,0)
+		size_hint: (0.25,1)
+<TouchResponsiveImage>:
+	id: tri
+<Keyboard>:
+	id: Keybrd
+
+<Level1>:
+	on_enter: root.load_level()
+	level_no: 1
+	name: 'Level1'
+	FloatLayout:
+		id: lyout
+		canvas.before:
+			Color:
+				rgba: (1/6,2/3,2/3,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		Keyboard:
+			id: keyboard
+			source: 'keyboard_1.jpg'
+			size_hint: (None,None)
+			size:(root.width/2,root.width/3.5)
+			kw1: root.width/2
+			kh1: root.width/3.5
+			pos: (root.width/2 - root.width/4, root.height/2-root.width/7)
+			
+			Image:
+				source: 'card_d.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 1*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+			Image:
+				source: 'card_e.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 2*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_f.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 3*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_g.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 4*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+
+			Image:
+				source: 'card_a.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 5*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_b.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 6*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_c.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 0*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+		Image:
+			id: card
+			random_number: 0
+			source: ''
+			size: (root.width/20,root.width/10)
+			pos: (root.ids.keyboard.x/2 - self.width/2,root.height)
+
+		status:
+			id: sts
+			size_hint: (0.1,0.07)
+			pos_hint: {'top':1,'right':1}
+
+		
+<Level2>:
+	on_enter: root.load_level()
+	level_no: 2
+	name: 'Level2'
+	FloatLayout:
+		name: 'Level2'
+		size_hint: (1, 1)
+		canvas.before:
+			Color:
+				rgba: (1/6,2/3,2/3,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		Keyboard:
+			id: keyboard
+			source: 'keyboard_1.jpg'
+			size_hint: (None,None)
+			size:(root.width/2,root.width/3.5)
+			kw1: root.width/2
+			kh1: root.width/3.5
+			pos: (root.width/2 - root.width/4, root.height/2-root.width/7)
+			
+			Image:
+				source: 'card_d.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 1*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+			Image:
+				source: 'card_e.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 2*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_f.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 3*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_g.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 4*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+
+			Image:
+				source: 'card_a.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 5*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_b.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 6*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/7/4)
+
+			Image:
+				source: 'card_c.jpg'
+				size:(self.parent.width/7/2,self.parent.width/7)
+				pos: (self.parent.x + 0*self.parent.width/7 + self.parent.width/7/4, self.parent.y + self.parent.width/28)
+
+			Image:
+				id: question_mark
+				random_number: 0
+				source: 'question_mark_new.jpg'
+				size_hint: (None,None)
+				size: (self.parent.width/14,self.parent.width/7)
+				x: self.parent.x + self.random_number*self.parent.width/7 + self.parent.width/7/4
+				y: self.parent.y + self.parent.width/28
+
+              
+		Train:
+			id: train			
+			source: 'train.png'			
+			size_hint: (None, None)
+			size: (root.width,5*root.width/62)
+			pos: (root.width,0)
+			allow_stretch: True		
+		
+		status:
+			id: sts
+			size_hint: (0.1,0.07)
+			pos_hint: {'top':1,'right':1}
+
+
+<Level3_cards>:
+	source: ''
+	
+	size_hint: (None, None)
+	size:(self.parent.width/28,self.parent.width/14)
+	
+<Level4_cards>:
+	source: ''
+	size_hint: (None, None)
+	size: (self.parent.width / 42, self.parent.width / 21)	
+					
+ 
+<Level3>:
+	on_enter: root.load_level()
+	level_no: 3
+	name: 'Level3'
+	FloatLayout:
+		name: 'Lyout'
+		size_hint: (1,1)
+		canvas.before:
+			Color:
+				rgba: (1/6,2/3,2/3,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		Keyboard:
+			id: keyboard
+			source: 'keyboard_2.jpg'
+			size_hint: (None,None)
+			size:(root.width,root.width/3.5)
+			kw2: root.width
+			kh2: root.width/3.5
+			pos: (root.width/2 - root.width/2, root.height/2-root.width/7)
+			Level3_cards:
+				id: smallcard1
+				i: 0
+				pos: ( self.parent.x + 0*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard2
+				i: 0
+				pos: ( self.parent.x + 1*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard3
+				i: 0
+				pos: ( self.parent.x + 2*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard4
+				i: 0
+				pos: ( self.parent.x + 3*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard5
+				i: 0
+				pos: ( self.parent.x + 4*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard6
+				i: 0
+				pos: ( self.parent.x + 5*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard7
+				i: 0
+				pos: ( self.parent.x + 6*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard8
+				i: 0
+				pos: ( self.parent.x + 7*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard9
+				i: 0
+				pos: ( self.parent.x + 8*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard10
+				i: 0
+				pos: ( self.parent.x + 9*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard11
+				i: 0
+				pos: ( self.parent.x + 10*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard12
+				i: 0
+				pos: ( self.parent.x + 11*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard13
+				i: 0
+				pos: ( self.parent.x + 12*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			Level3_cards: 
+				id: smallcard14
+				i: 0
+				pos: ( self.parent.x + 13*self.parent.width/14 + self.parent.width/56, self.parent.y + self.parent.width/56)
+			
+			Image:
+				id: question_mark
+				random_number: 0
+				source: 'question_mark_new.jpg'
+				size_hint: (None, None)
+				size: (root.width/28, root.width/14)
+				y: self.parent.y + root.width / 56
+				x: self.parent.x + self.random_number*self.parent.width/14+self.parent.width/56
+				
+              
+              
+		Train:
+			id: train			
+			source: 'train.png'
+			size_hint: (None, None)
+			size: (root.width,5*root.width/62)
+			pos: (root.width,root.x)
+			allow_stretch: True		
+		
+		status:
+			id: sts
+			size_hint: (0.1,0.07)
+			pos_hint: {'top':1,'right':1}
+
+
+		
+<Level4>:
+	on_enter: root.load_level()
+	level_no: 4
+	name: 'Level4'
+	FloatLayout:
+		name: 'Lyout'
+		size_hint: (1,1)
+		canvas.before:
+			Color:
+				rgba: (1/6,2/3,2/3,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		Keyboard:
+			id: keyboard
+			source: 'keyboard_3.jpg'
+			size_hint: (None,None)
+			size:(root.width,root.width/5.25)
+			kw2: root.width
+			kh2: root.width/3.5
+			pos: (root.width/2 - root.width/2, root.height/2-root.width/(5.25*2))
+
+			Level4_cards:
+				id: smallcard0
+				i: 0
+				pos: ( self.parent.x + 0*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard2
+				i: 0
+				pos: ( self.parent.x + 2*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard4
+				i: 0
+				pos: ( self.parent.x + 4*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard6
+				i: 0
+				pos: ( self.parent.x + 6*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard7
+				i: 0
+				pos: ( self.parent.x + 8*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard9
+				i: 0
+				pos: ( self.parent.x + 10*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard11
+				i: 0
+				pos: ( self.parent.x + 12*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard13
+				i: 0
+				pos: ( self.parent.x + 14*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard14
+				i: 0
+				pos: ( self.parent.x + 16*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard16
+				i: 0
+				pos: ( self.parent.x + 18*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard18
+				i: 0
+				pos: ( self.parent.x + 20*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			Level4_cards: 
+				id: smallcard20
+				i: 0
+				pos: ( self.parent.x + 20*self.parent.width/21 + self.parent.width/84, self.parent.y + self.parent.width/84)
+			
+			Image:
+				id: question_mark
+				random_number: 0
+				source: 'question_mark_new.jpg'
+				size_hint: (None, None)
+				size: (root.width/42, root.width/21)
+				y: self.parent.y + root.width / 84
+				x: self.parent.x + self.random_number*self.parent.width/21+self.parent.width/84
+				
+              
+              
+		Train:
+			id: train			
+			source: 'train.png'
+			size_hint: (None, None)
+			size: (root.width,5*root.width/62)
+			pos: (root.width,root.x)
+			allow_stretch: True		
+		
+		status:
+			id: sts
+			size_hint: (0.1,0.07)
+			pos_hint: {'top':1,'right':1}
+		
+<Level5>:
+	on_enter: root.load_level()
+	level_no: 5
+	name: 'Level5'
+	FloatLayout:
+		name: 'Lyout'
+		size_hint: (1,1)
+		canvas.before:
+			Color:
+				rgba: (1/6,2/3,2/3,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		Keyboard:
+			id: keyboard
+			source: 'keyboard_3.jpg'
+			size_hint: (None,None)
+			size:(root.width,root.width/5.25)
+			kw2: root.width
+			kh2: root.width/3.5
+			pos: (root.width/2 - root.width/2, root.height/2-root.width/(5.25*2))
+
+			
+			
+			Image:
+				id: question_mark
+				random_number: 0
+				source: 'question_mark_new.jpg'
+				size_hint: (None, None)
+				size: (root.width/42, root.width/21)
+				y: self.parent.y + root.width / 84
+				x: self.parent.x + self.random_number*self.parent.width/21+self.parent.width/84
+				
+              
+              
+		Train:
+			id: train			
+			source: 'train.png'
+			size_hint: (None, None)
+			size: (root.width,5*root.width/62)
+			pos: (root.width,root.x)
+			allow_stretch: True		
+		
+		status:
+			id: sts
+			size_hint: (0.1,0.07)
+			pos_hint: {'top':1,'right':1}
+<Level6>:
+	on_enter: root.load_level()
+	level_no: 6
+	name: 'Level6'
+	on_enter: root.load_level()
+	FloatLayout:
+		name: 'Level6'
+		canvas.before:
+			Color:
+				rgba: (1/6,2/3,2/3,1)
+			Rectangle:
+				size: self.size
+				pos: self.pos
+		Keyboard:
+			id: keyboard
+			source: 'keyboard_1.jpg'
+			size_hint: (None,None)
+			size:(root.width/2,root.width/3.5)
+			kw1: root.width/2
+			kh1: root.width/3.5
+			pos: (root.width/2 - root.width/4, root.height/2-root.width/7)
+
+		Image:
+			id: card
+			source: ''
+			flipcardpos: 0
+			size_hint:(None, None)
+			size: (root.width/20,root.width/10)
+			x: [keyboard.x /2 - root.width/40, (root.width + keyboard.right)/2 - root.width/40][self.flipcardpos]
+
+		status:
+			id: sts
+			size_hint: (0.1,0.07)
+			pos_hint: {'top':1,'right':1}
+		
+
